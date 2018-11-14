@@ -29,3 +29,7 @@ git push
 git diff (muestra todos los cambios)
 git diff [nombre de archivo] (cambios en un archivo en particular)
 
+-Como borrar un archivo o carpeta que ya esta agregada a git
+git rm [archivo]
+git rm -r [carpeta en forma recursiva] (Ojo con esto!)
+
