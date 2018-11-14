@@ -1,3 +1,5 @@
+package tierraMedia;
+
 import java.util.Collection;
 import java.util.HashSet;
 
@@ -7,7 +9,7 @@ public class Region {
     private Collection<Zona> zonas;                 //Las Regiones contienen ZONAS;
     private Collection<Region> regionesLimitrofes;
 
-    public Region(String nombre){
+    public Region(String nombre) {
         this.nombre = nombre;
         this.zonas = new HashSet<>();
         this.regionesLimitrofes = new HashSet<>();
@@ -25,23 +27,22 @@ public class Region {
         return regionesLimitrofes;
     }
 
-    public void addRegionLimitrofe(Region region){
-        if (limitasConEstaRegion(region)){
+    public void addRegionLimitrofe(Region region) {
+        if (limitasConEstaRegion(region)) {
             regionesLimitrofes.add(region);
         }
     }
 
-    public void addZona(Zona zona){
+    public void addZona(Zona zona) {
         zonas.add(zona);
     }
 
 
     // 1). Saber si dos regiones son limítrofes.
     // Lo son si tienen zonas (al menos una de cada región) que son limítrofes.
-    public Boolean limitasConEstaRegion(Region region){
+    public Boolean limitasConEstaRegion(Region region) {
         return this.zonas.stream().anyMatch(zona -> zona.limitoConEstaRegion(region.zonas));
     }
-
 
 
 }

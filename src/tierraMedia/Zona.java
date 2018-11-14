@@ -1,21 +1,30 @@
+package tierraMedia;
+
 import java.util.*;
 
 public class Zona {
 
     private String nombre;
     private Region region;
-    private Collection<Zona> zonasLimitrofes;
-
-    private Requerimiento requerimiento;
+    private Collection<Zona> zonasLimitrofes = new HashSet<>();
     private Collection<Requerimiento> requerimientos = new HashSet<>();
 
-    public Zona(String nombre, Region region, Requerimiento requerimiento) {
+
+    public Zona(String nombre, Region region) {
         this.nombre = nombre;
         this.region = region;
-        this.requerimiento = requerimiento;
+        region.addZona(this);
         this.zonasLimitrofes = new HashSet<>();
     }
 
+    public Zona(String nombre, Region region, Collection<Requerimiento> requerimientos) {
+        this.nombre = nombre;
+        this.region = region;
+        this.requerimientos = requerimientos;
+    }
+
+
+//........... GETTERS
     public String getNombre() {
         return nombre;
     }
@@ -27,16 +36,18 @@ public class Zona {
     public Region getRegion() {
         return region;
     }
+//............
 
-    public void addZonaLimitrofe(Zona zona){
+    public void addRequerimiento(Requerimiento requerimiento){
+        requerimientos.add(requerimiento);
+    }
+
+    public void addZonaLimitrofe(Zona zona) {
         zonasLimitrofes.add(zona);
     }
 
-
-
-
-    public boolean limitoConEstaRegion(Collection<Zona> zonas){ // Collection de zonas que cotiene la region que comparo
-        /*for (Zona zona: zonasRegion2 ) {
+    public boolean limitoConEstaRegion(Collection<Zona> zonas) { // Collection de zonas que cotiene la region que comparo
+        /*for (tierraMedia.Zona zona: zonasRegion2 ) {
             if(zona.getZonasLimitrofes().contains(this)){
                 return true;
             }
@@ -50,12 +61,14 @@ public class Zona {
         return zonas.stream().anyMatch(zona -> this.limitoConEstaZona(zona));
     }
 
-    public boolean limitoConEstaZona(Zona zona){
+    public boolean limitoConEstaZona(Zona zona) {
         return this.zonasLimitrofes.contains(zona);
     }
 
-
-
+    public boolean evaluarRequerimientos(Grupo grupo) {
+        requerimientos.stream().;
+        grupo.getViajeros().stream().filter(viajero -> requerimientos.stream().)
+    }
 
 
     @Override

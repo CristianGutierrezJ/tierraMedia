@@ -1,3 +1,5 @@
+package tierraMedia;
+
 public class Item {
 
     private String nombre;

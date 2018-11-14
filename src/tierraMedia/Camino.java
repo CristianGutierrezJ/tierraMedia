@@ -1,15 +1,13 @@
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
+package tierraMedia;
+
+import java.util.*;
 import java.util.stream.Collectors;
 
 
 public class Camino {
 
     // Los caminos de la tierra media están formados por una sucesión de zonas que deben transitarse en un determinado orden.
-    private List<Zona> zonasAtravesadas = new ArrayList<>();
-    private Collection<Region> regionesAtravesadas = new HashSet<>();
+    private List<Zona> zonasAtravesadas = new ArrayList<Zona>();
 
 
     // 2). Saber cuántas regiones atraviesa un camino de acuerdo a las zonas que incluye.
@@ -20,13 +18,12 @@ public class Camino {
         }
     }
 
-    private void atravesarZonas(){
-        regionesAtravesadas = zonasAtravesadas.stream().map(zona -> zona.getRegion()).collect(Collectors.toList());
+    private Collection<Region> getRegionesAtravesadas(){
+        return zonasAtravesadas.stream().map(zona -> zona.getRegion()).collect(Collectors.toSet());
     }
 
     public Integer cantidadDeRegionesAtravesadas(){
-        atravesarZonas();
-        return regionesAtravesadas.size();
+        return getRegionesAtravesadas().size();
     }
 
 
