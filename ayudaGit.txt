@@ -1,0 +1,20 @@
+COMANDOS GIT
+-Ver ayuda de git
+git help (ayuda en general)
+git help [comando] (Trae la ayuda del comando en particular ej: git help log)
+
+-Bajar un repositorio de Github
+git clone git@github.com:CristianGutierrezJ/tierraMedia.git
+
+-Ver historial del repo
+git log
+
+
+-agregar cambios al area de staging
+git add [archivos]
+
+-ver el estado del repo (cambios pendientes, etc)
+git status
+
+-Traer los ultimos cambios desde el repo remoto
+git pull
