@@ -24,3 +24,8 @@ git pull
 
 -Enviar ultimos cambios confirmados al repo remoto
 git push
+
+-Como ver los cambios hechos no agregados al stage area
+git diff (muestra todos los cambios)
+git diff [nombre de archivo] (cambios en un archivo en particular)
+
