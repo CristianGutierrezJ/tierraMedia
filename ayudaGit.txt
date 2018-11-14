@@ -9,12 +9,18 @@ git clone git@github.com:CristianGutierrezJ/tierraMedia.git
 -Ver historial del repo
 git log
 
-
 -agregar cambios al area de staging
 git add [archivos]
+git add . (con esto agregas todos los archivos modificados/creados que esten dentro de la caprtea en al que estas parado, incluyendo subcarpetas)
+
+-Confirmar cambios en el area de staging
+git commit -m "[descripcion de los cambios]"
 
 -ver el estado del repo (cambios pendientes, etc)
 git status
 
 -Traer los ultimos cambios desde el repo remoto
 git pull
+
+-Enviar ultimos cambios confirmados al repo remoto
+git push
