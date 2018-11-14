@@ -3,13 +3,16 @@ import java.util.*;
 public class Zona {
 
     private String nombre;
+    private Region region;
     private Collection<Zona> zonasLimitrofes;
-    private List<String> requerimientos;
 
+    private Requerimiento requerimiento;
+    private Collection<Requerimiento> requerimientos = new HashSet<>();
 
-    public Zona(String nombre) {
+    public Zona(String nombre, Region region, Requerimiento requerimiento) {
         this.nombre = nombre;
-        this.requerimientos = new ArrayList<>();
+        this.region = region;
+        this.requerimiento = requerimiento;
         this.zonasLimitrofes = new HashSet<>();
     }
 
@@ -21,18 +24,18 @@ public class Zona {
         return zonasLimitrofes;
     }
 
+    public Region getRegion() {
+        return region;
+    }
+
     public void addZonaLimitrofe(Zona zona){
         zonasLimitrofes.add(zona);
     }
 
-    public Integer cantidadDeRequerimientos(){
-        return requerimientos.size();
-    }
 
 
 
-
-    public boolean limitasConEstaZona(Collection<Zona> zonas){
+    public boolean limitoConEstaRegion(Collection<Zona> zonas){ // Collection de zonas que cotiene la region que comparo
         /*for (Zona zona: zonasRegion2 ) {
             if(zona.getZonasLimitrofes().contains(this)){
                 return true;
@@ -47,7 +50,7 @@ public class Zona {
         return zonas.stream().anyMatch(zona -> this.limitoConEstaZona(zona));
     }
 
-    private boolean limitoConEstaZona(Zona zona){
+    public boolean limitoConEstaZona(Zona zona){
         return this.zonasLimitrofes.contains(zona);
     }
 

@@ -1,22 +1,21 @@
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Viajero {
 
     private String nombre;
-    private Integer nivel;
     private String raza;
-    private Map<String,Item> items;
+    private Integer nivel;
+    private Map<String,Item> items; // Elementos que posee
 
     private Integer cantidadtemp = 0;
     private Item itemTemp;
 
 
-    public Viajero(String nombre, Integer nivel, String raza) {
+    public Viajero(String nombre, String raza, Integer nivel) {
         this.nombre = nombre;
-        this.nivel = nivel;
         this.raza = raza;
+        this.nivel = nivel;
         this.items = new HashMap<>();
     }
 

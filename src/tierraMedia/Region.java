@@ -26,7 +26,9 @@ public class Region {
     }
 
     public void addRegionLimitrofe(Region region){
-        regionesLimitrofes.add(region);
+        if (limitasConEstaRegion(region)){
+            regionesLimitrofes.add(region);
+        }
     }
 
     public void addZona(Zona zona){
@@ -37,9 +39,8 @@ public class Region {
     // 1). Saber si dos regiones son limítrofes.
     // Lo son si tienen zonas (al menos una de cada región) que son limítrofes.
     public Boolean limitasConEstaRegion(Region region){
-        return this.zonas.stream().anyMatch(zona -> zona.limitasConEstaZona(region.zonas));
+        return this.zonas.stream().anyMatch(zona -> zona.limitoConEstaRegion(region.zonas));
     }
-
 
 
 
