@@ -22,7 +22,7 @@ git status
 -Traer los ultimos cambios desde el repo remoto
 git pull
 
--Enviar ultimos cambios confirmados al repo remoto
+-Enviar últimos cambios confirmados al repo remoto
 git push
 
 -Como ver los cambios hechos no agregados al stage area
