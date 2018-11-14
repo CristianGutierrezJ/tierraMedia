@@ -66,7 +66,7 @@ public class Zona {
     }
 
     public boolean evaluarRequerimientos(Grupo grupo) {
-        requerimientos.stream().;
+        requerimientos.stream().; //Esta linea es para ejercitar conflictos en GIT
         grupo.getViajeros().stream().filter(viajero -> requerimientos.stream().)
     }
 
