@@ -33,3 +33,11 @@ git diff [nombre de archivo] (cambios en un archivo en particular)
 git rm [archivo]
 git rm -r [carpeta en forma recursiva] (Ojo con esto!)
 
+-Crear branch y checkoutearlo (crear el branch, y "pararse" en ese nuevo branch)
+git checkout -b [nombre del branch]
+
+-Cambiar de branch
+git checkout [nombre del branch]
+
+-Listar branches y ver en cual estoy parado
+git branch (el que tiene el * es el branch actual)
