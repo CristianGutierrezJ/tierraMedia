@@ -66,8 +66,9 @@ public class Zona {
     }
 
     public boolean evaluarRequerimientos(Grupo grupo) {
-        requerimientos.stream().;
-        grupo.getViajeros().stream().filter(viajero -> requerimientos.stream().)
+        //requerimientos.stream().;
+        //grupo.getViajeros().stream().filter(viajero -> requerimientos.stream().)
+        return false;
     }
 
 
