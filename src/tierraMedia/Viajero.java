@@ -3,15 +3,20 @@ package tierraMedia;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Viajero {
+public class Viajero extends Unidad{
 
     private String nombre;
     private String raza;
     private Integer nivel;
     private Map<String, Item> items; // Elementos que posee
 
-    private Integer cantidadtemp = 0;
-    private Item itemTemp;
+
+    public Viajero(String nombre, String raza, Integer nivel) {
+        this.nombre = nombre;
+        this.raza = raza;
+        this.nivel = nivel;
+        this.items = new HashMap<>();
+    }
 
 
     public String getRaza() {
@@ -26,27 +31,35 @@ public class Viajero {
         return items;
     }
 
-    public void setItems(Map<String, Item> items) {
-        this.items = items;
+    @Override
+    public boolean puedeAtravesarZona(Zona zona) {
+        return zona.unidadPuedeAtravesar(this); // Pregunta a ZONA, ya que debe cumplir sus requerimientos
     }
 
-    public Viajero(String nombre, String raza, Integer nivel) {
-        this.nombre = nombre;
-        this.raza = raza;
-        this.nivel = nivel;
-        this.items = new HashMap<>();
+    @Override
+    public boolean contieneElemento(String elemento) {
+        return this.getItems().containsKey(elemento);
     }
+
 
     public void addItem(Item item) {
-        if (items.containsKey(item.getNombre())) {
-            itemTemp = items.get(item.getNombre());
-            cantidadtemp = itemTemp.getCantidad() + item.getCantidad();
-            itemTemp.setCantidad(cantidadtemp);
+        Item itemTemp = items.get(item.getNombre());
+        //Item itemCopy = new Item(itemTemp.getNombre(), itemTemp.getCantidad()); Como copiar el item de un mapa;
+        if (itemTemp != null) { // Evito preguntar si contiene el item, ya que si no lo contiene (return null), evitar eso;
+            itemTemp.acumularCantidad(item);
             items.put(item.getNombre(), itemTemp);
         } else {
             items.put(item.getNombre(), item);
         }
     }
 
+    public boolean cumpleConRazaYNivel(String raza, Integer nivel) {
+        return getRaza().equals(raza) && getNivel() >= (nivel);
+    }
+
+
+    public void aumentarNivel() {
+        this.nivel++;
+    }
 
 }

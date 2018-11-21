@@ -1,6 +1,7 @@
 package tierraMedia;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Zona {
 
@@ -8,7 +9,7 @@ public class Zona {
     private Region region;
     private Collection<Zona> zonasLimitrofes = new HashSet<>();
     private Collection<Requerimiento> requerimientos = new HashSet<>();
-
+    private boolean terrenoPantanoso = false;
 
     public Zona(String nombre, Region region) {
         this.nombre = nombre;
@@ -23,8 +24,12 @@ public class Zona {
         this.requerimientos = requerimientos;
     }
 
+    //........... SETTER
+    public void setTerrenoPantanoso(boolean terrenoPantanoso) {
+        this.terrenoPantanoso = terrenoPantanoso;
+    }
 
-//........... GETTERS
+    //........... GETTERS
     public String getNombre() {
         return nombre;
     }
@@ -38,7 +43,7 @@ public class Zona {
     }
 //............
 
-    public void addRequerimiento(Requerimiento requerimiento){
+    public void addRequerimiento(Requerimiento requerimiento) {
         requerimientos.add(requerimiento);
     }
 
@@ -46,29 +51,43 @@ public class Zona {
         zonasLimitrofes.add(zona);
     }
 
-    public boolean limitoConEstaRegion(Collection<Zona> zonas) { // Collection de zonas que cotiene la region que comparo
+    public boolean limitaConAlgunaZona(Collection<Zona> zonas) { // Collection de zonas que cotiene la region que comparo
         /*for (tierraMedia.Zona zona: zonasRegion2 ) {
             if(zona.getZonasLimitrofes().contains(this)){
                 return true;
             }
         }
         return false; */
-
-        //return zonasRegion2.stream().anyMatch(zona -> zona.getZonasLimitrofes().contains(this));
-
-        //return zonasRegion2.stream().anyMatch(zona -> this.getZonasLimitrofes().contains(zona));
-
-        return zonas.stream().anyMatch(zona -> this.limitoConEstaZona(zona));
+        return zonas.stream().anyMatch(zona -> this.limitaConZona(zona));
     }
 
-    public boolean limitoConEstaZona(Zona zona) {
+    public boolean limitaConZona(Zona zona) {
         return this.zonasLimitrofes.contains(zona);
     }
 
-    public boolean evaluarRequerimientos(Grupo grupo) {
-        //requerimientos.stream().;
-        //grupo.getViajeros().stream().filter(viajero -> requerimientos.stream().)
-        return false;
+    //todo: .......................................................................................
+
+
+    public boolean grupoPuedeAtravesar(Grupo grupo) {       // Hecar metodo en esta clase y pasar por parametro el requerimiento)
+        //grupo.getUnidades().stream().filter(unidad -> unidad.puedeAtravesarZona(this))
+
+        Map<Boolean, List<Unidad>> unidadesPorTipo = grupo.getUnidades().stream().collect(Collectors.partitioningBy(unidad -> unidad.puedeAtravesarZona(this)));
+        
+        List<Unidad> puedenAtravesar = unidadesPorTipo.get(true);
+        List<Unidad> noPuedenAtravesar = unidadesPorTipo.get(false);
+
+        return requerimientos.stream().allMatch(requerimiento -> requerimiento.cumpleConLasNormas(grupo));
+    }
+
+    //todo: Hecer metodo que conteste si cada viajero puede atravesar la zona, Y CAMBIAR LA ACCION DE ARRIBA YA QUE NO PASO POR PARAMETRO --"GRUPO"--
+    public boolean unidadPuedeAtravesar(Unidad unidad) {
+        return requerimientos.stream().allMatch(requerimiento -> requerimiento.cumpleConLasNormas(unidad));
+    }
+    //todo: .................................................................................
+
+
+    public boolean esPantanoso() {
+        return this.terrenoPantanoso;
     }
 
 

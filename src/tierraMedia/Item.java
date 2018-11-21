@@ -24,5 +24,7 @@ public class Item {
     }
 
 
-
+    public void acumularCantidad(Item item) {
+        setCantidad(this.cantidad + item.getCantidad());
+    }
 }
