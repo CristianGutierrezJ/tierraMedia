@@ -8,7 +8,7 @@ public abstract class Unidad {
 
     public abstract Integer getNivel();
 
-    public abstract boolean cumpleConRazaYNivel(String raza, Integer nivel);
+    public abstract String getRaza();
 
     public abstract Map<String, Item> getItems();
 

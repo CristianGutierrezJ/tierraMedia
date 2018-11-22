@@ -17,7 +17,7 @@ public class RequerimientoDeIntegrante extends Requerimiento {
 
 /*
     @Override
-    public boolean cumpleConLasNormas(Grupo grupo) {
+    public boolean unidadCumpleConLasNormas(Grupo grupo) {
         return grupo.getUnidades().stream()
                 .filter(unidad -> unidad instanceof Viajero )
                 .filter(unidad -> unidad.cumpleConRazaYNivel(raza, nivel))
@@ -26,7 +26,7 @@ public class RequerimientoDeIntegrante extends Requerimiento {
     }
 */
 
-    public boolean cumpleConLasNormas(Unidad unidad) {
-        return unidad.cumpleConRazaYNivel(raza, nivel);
+    public boolean unidadCumpleConLasNormas(Unidad unidad) {
+        return unidad.getNivel() >= nivel && unidad.getRaza().equals(raza);
     }
 }

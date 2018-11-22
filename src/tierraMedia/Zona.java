@@ -82,7 +82,7 @@ public class Zona {
         List<Unidad> puedenAtravesar = unidadesPorTipo.get(true);
         List<Unidad> noPuedenAtravesar = unidadesPorTipo.get(false);
 */
-        // return requerimientos.stream().allMatch(requerimiento -> requerimiento.cumpleConLasNormas(grupo));
+        // return requerimientos.stream().allMatch(requerimiento -> requerimiento.unidadCumpleConLasNormas(grupo));
 
         // todo: En lugar de Allmatch hago un filtro de las unidades que cumplen,
         List unidadesQueAtraviesan = grupo.getUnidades().stream().

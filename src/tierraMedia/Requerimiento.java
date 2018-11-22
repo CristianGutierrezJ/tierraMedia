@@ -12,7 +12,7 @@ public abstract class Requerimiento {
         return cantidad;
     }
 
-    public abstract boolean cumpleConLasNormas(Unidad unidad);
+    public abstract boolean unidadCumpleConLasNormas(Unidad unidad);
 
 
 }
