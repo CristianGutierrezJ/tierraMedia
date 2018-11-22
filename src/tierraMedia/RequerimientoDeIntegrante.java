@@ -14,6 +14,8 @@ public class RequerimientoDeIntegrante extends Requerimiento {
         this.nivel = nivel;
     }
 
+
+/*
     @Override
     public boolean cumpleConLasNormas(Grupo grupo) {
         return grupo.getUnidades().stream()
@@ -22,6 +24,7 @@ public class RequerimientoDeIntegrante extends Requerimiento {
                 .collect(Collectors.toList())
                 .size() >= this.getCantidad();
     }
+*/
 
     public boolean cumpleConLasNormas(Unidad unidad) {
         return unidad.cumpleConRazaYNivel(raza, nivel);

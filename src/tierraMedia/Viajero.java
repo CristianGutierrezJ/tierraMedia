@@ -32,9 +32,15 @@ public class Viajero extends Unidad{
     }
 
     @Override
-    public boolean puedeAtravesarZona(Zona zona) {
-        return zona.unidadPuedeAtravesar(this); // Pregunta a ZONA, ya que debe cumplir sus requerimientos
+    public boolean puedeAtravesarZona(Zona zona) {// Atraviesa si cumple los REQ de Zona----------
+        return zona.getRequerimientos().stream().allMatch(requerimiento -> requerimiento.cumpleConLasNormas(this));
     }
+
+
+
+
+
+
 
     @Override
     public boolean contieneElemento(String elemento) {

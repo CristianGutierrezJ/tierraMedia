@@ -12,8 +12,6 @@ public abstract class Requerimiento {
         return cantidad;
     }
 
-    public abstract boolean cumpleConLasNormas(Grupo grupo);
-
     public abstract boolean cumpleConLasNormas(Unidad unidad);
 
 

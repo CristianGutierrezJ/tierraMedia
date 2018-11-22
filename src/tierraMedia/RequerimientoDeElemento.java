@@ -11,6 +11,8 @@ public class RequerimientoDeElemento extends Requerimiento {
         this.nombreElemento = nombreElemento;
     }
 
+
+/*
     @Override
     public boolean cumpleConLasNormas(Grupo grupo) {
         return grupo.getUnidades().stream()
@@ -18,10 +20,11 @@ public class RequerimientoDeElemento extends Requerimiento {
                 .collect(Collectors.toList())
                 .size() >= this.getCantidad();
     }
+*/
 
     @Override
     public boolean cumpleConLasNormas(Unidad unidad) {
-        return unidad.contieneElemento(nombreElemento);
+        return unidad.getItems().containsKey(nombreElemento);
     }
 
 

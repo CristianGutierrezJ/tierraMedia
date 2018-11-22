@@ -14,6 +14,5 @@ public abstract class Unidad {
 
     public abstract boolean puedeAtravesarZona(Zona zona);
 
-    public abstract boolean contieneElemento(String elemento);
 
 }

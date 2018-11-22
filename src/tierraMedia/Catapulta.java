@@ -12,10 +12,6 @@ public class Catapulta extends Unidad {
         return !zona.esPantanoso();
     }
 
-    @Override
-    public boolean contieneElemento(String elemento) {
-        return false;
-    }
 
     @Override
     public void aumentarNivel() {

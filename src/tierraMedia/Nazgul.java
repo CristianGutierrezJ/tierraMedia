@@ -12,10 +12,6 @@ public class Nazgul extends Unidad {
         return true;
     }
 
-    @Override
-    public boolean contieneElemento(String elemento) {
-        return false;
-    }
 
     @Override
     public void aumentarNivel() {

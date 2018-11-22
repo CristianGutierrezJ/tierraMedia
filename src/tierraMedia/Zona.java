@@ -41,7 +41,11 @@ public class Zona {
     public Region getRegion() {
         return region;
     }
-//............
+
+    public Collection<Requerimiento> getRequerimientos() {
+        return requerimientos;
+    }
+    //............
 
     public void addRequerimiento(Requerimiento requerimiento) {
         requerimientos.add(requerimiento);
@@ -71,19 +75,23 @@ public class Zona {
     public boolean grupoPuedeAtravesar(Grupo grupo) {       // Hecar metodo en esta clase y pasar por parametro el requerimiento)
         //grupo.getUnidades().stream().filter(unidad -> unidad.puedeAtravesarZona(this))
 
-        Map<Boolean, List<Unidad>> unidadesPorTipo = grupo.getUnidades().stream().collect(Collectors.partitioningBy(unidad -> unidad.puedeAtravesarZona(this)));
-        
+/*
+        Map<Boolean, List<Unidad>> unidadesPorTipo = grupo.getUnidades().stream().
+                collect(Collectors.partitioningBy(unidad -> unidad.puedeAtravesarZona(this)));
+
         List<Unidad> puedenAtravesar = unidadesPorTipo.get(true);
         List<Unidad> noPuedenAtravesar = unidadesPorTipo.get(false);
+*/
+        // return requerimientos.stream().allMatch(requerimiento -> requerimiento.cumpleConLasNormas(grupo));
 
-        return requerimientos.stream().allMatch(requerimiento -> requerimiento.cumpleConLasNormas(grupo));
-    }
+        // todo: En lugar de Allmatch hago un filtro de las unidades que cumplen,
+        List unidadesQueAtraviesan = grupo.getUnidades().stream().
+                filter(unidad -> unidad.puedeAtravesarZona(this)).
+                collect(Collectors.toList());
+        // todo: Luego Hago un AllMatch del size de los que cumplen con la cantidad de cada REQ
+        requerimientos.stream().allMatch(requerimiento -> requerimiento.getCantidad() <= unidadesQueAtraviesan.size());
 
-    //todo: Hecer metodo que conteste si cada viajero puede atravesar la zona, Y CAMBIAR LA ACCION DE ARRIBA YA QUE NO PASO POR PARAMETRO --"GRUPO"--
-    public boolean unidadPuedeAtravesar(Unidad unidad) {
-        return requerimientos.stream().allMatch(requerimiento -> requerimiento.cumpleConLasNormas(unidad));
     }
-    //todo: .................................................................................
 
 
     public boolean esPantanoso() {
