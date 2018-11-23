@@ -45,6 +45,10 @@ public class Zona {
     public Collection<Requerimiento> getRequerimientos() {
         return requerimientos;
     }
+
+    public boolean isTerrenoPantanoso() {
+        return terrenoPantanoso;
+    }
     //............
 
     public void addRequerimiento(Requerimiento requerimiento) {
@@ -72,7 +76,15 @@ public class Zona {
 
 
     public boolean grupoPuedeAtravesar(Grupo grupo) {
-        return requerimientos.stream().allMatch(requerimiento -> requerimiento.grupoCumpleConLasNormas(grupo, this));
+        if (this.grupoPuedeAtravesarZona(grupo)) {
+            return requerimientos.stream().allMatch(requerimiento -> requerimiento.grupoCumpleConLasNormas(grupo));
+        }
+        else return false;
+    }
+
+    public boolean grupoPuedeAtravesarZona(Grupo grupo){
+        return grupo.getUnidades().stream()
+                .allMatch(unidad -> unidad.puedeAtravesarZona(this));
     }
 
 

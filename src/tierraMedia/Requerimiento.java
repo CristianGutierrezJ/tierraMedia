@@ -12,8 +12,7 @@ public abstract class Requerimiento {
         return cantidad;
     }
 
-    public abstract boolean grupoCumpleConLasNormas(Grupo grupo, Zona zona);
-
+    public abstract boolean grupoCumpleConLasNormas(Grupo grupo);
 
 
 }
