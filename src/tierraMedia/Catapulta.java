@@ -12,6 +12,11 @@ public class Catapulta extends Unidad {
         return !zona.esPantanoso();
     }
 
+    @Override
+    public boolean cumpleConRazaYNivel(String raza, Integer nivel) {
+        return false;
+    }
+
 
     @Override
     public void aumentarNivel() {
@@ -31,4 +36,6 @@ public class Catapulta extends Unidad {
     public Map<String, Item> getItems() {
         return items;
     }
+
+
 }

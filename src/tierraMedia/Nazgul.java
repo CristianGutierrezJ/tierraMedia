@@ -12,6 +12,10 @@ public class Nazgul extends Unidad {
         return true;
     }
 
+    @Override
+    public boolean cumpleConRazaYNivel(String raza, Integer nivel) {
+        return false;
+    }
 
     @Override
     public void aumentarNivel() {

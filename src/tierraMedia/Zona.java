@@ -69,29 +69,12 @@ public class Zona {
         return this.zonasLimitrofes.contains(zona);
     }
 
-    //todo: .......................................................................................
 
 
-    public boolean grupoPuedeAtravesar(Grupo grupo) {       // Hecar metodo en esta clase y pasar por parametro el requerimiento)
-        //grupo.getUnidades().stream().filter(unidad -> unidad.puedeAtravesarZona(this))
-
-/*
-        Map<Boolean, List<Unidad>> unidadesPorTipo = grupo.getUnidades().stream().
-                collect(Collectors.partitioningBy(unidad -> unidad.puedeAtravesarZona(this)));
-
-        List<Unidad> puedenAtravesar = unidadesPorTipo.get(true);
-        List<Unidad> noPuedenAtravesar = unidadesPorTipo.get(false);
-*/
-        // return requerimientos.stream().allMatch(requerimiento -> requerimiento.unidadCumpleConLasNormas(grupo));
-
-        // todo: En lugar de Allmatch hago un filtro de las unidades que cumplen,
-        List unidadesQueAtraviesan = grupo.getUnidades().stream().
-                filter(unidad -> unidad.puedeAtravesarZona(this)).
-                collect(Collectors.toList());
-        // todo: Luego Hago un AllMatch del size de los que cumplen con la cantidad de cada REQ
-        requerimientos.stream().allMatch(requerimiento -> requerimiento.getCantidad() <= unidadesQueAtraviesan.size());
-
+    public boolean grupoPuedeAtravesar(Grupo grupo) {
+        return requerimientos.stream().allMatch(requerimiento -> requerimiento.grupoCumpleConLasNormas(grupo, this));
     }
+
 
 
     public boolean esPantanoso() {

@@ -26,7 +26,6 @@ public class Grupo {
     // Saber si un grupo puede atravesar una zona.
     // Puede hacerlo cuando el grupo cumple todos sus requerimientos.
     public boolean puedeAtravesarZona(Zona zona) {
-        //return unidades.forEach(unidad -> unidad.puedeAtravesarZona(zona));
         return zona.grupoPuedeAtravesar(this);
     }
 

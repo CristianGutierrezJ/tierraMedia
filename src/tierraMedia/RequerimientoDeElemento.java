@@ -12,20 +12,16 @@ public class RequerimientoDeElemento extends Requerimiento {
     }
 
 
-/*
+
     @Override
-    public boolean unidadCumpleConLasNormas(Grupo grupo) {
+    public boolean grupoCumpleConLasNormas(Grupo grupo, Zona zona) {
         return grupo.getUnidades().stream()
+                .filter(unidad -> unidad.puedeAtravesarZona(zona))
                 .filter(unidad -> unidad.getItems().containsKey(nombreElemento))
                 .collect(Collectors.toList())
                 .size() >= this.getCantidad();
     }
-*/
 
-    @Override
-    public boolean unidadCumpleConLasNormas(Unidad unidad) {
-        return unidad.getItems().containsKey(nombreElemento);
-    }
 
 
 }

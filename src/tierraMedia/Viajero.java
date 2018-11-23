@@ -32,16 +32,9 @@ public class Viajero extends Unidad{
     }
 
     @Override
-    public boolean puedeAtravesarZona(Zona zona) {// Atraviesa si cumple los REQ de Zona----------
-        return zona.getRequerimientos().stream().allMatch(requerimiento -> requerimiento.unidadCumpleConLasNormas(this));
+    public boolean puedeAtravesarZona(Zona zona) {
+        return true;
     }
-
-
-
-
-
-
-
 
     public void addItem(Item item) {
         Item itemTemp = items.get(item.getNombre());

@@ -14,5 +14,6 @@ public abstract class Unidad {
 
     public abstract boolean puedeAtravesarZona(Zona zona);
 
+    public abstract boolean cumpleConRazaYNivel(String raza, Integer nivel);
 
 }
