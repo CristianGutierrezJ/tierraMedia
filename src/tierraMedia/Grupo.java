@@ -25,9 +25,18 @@ public class Grupo {
 
     // Saber si un grupo puede atravesar una zona.
     // Puede hacerlo cuando el grupo cumple todos sus requerimientos.
-    public boolean puedeAtravesarZona(Zona zona) {
-        return zona.grupoPuedeAtravesar(this);
+
+    public boolean sonAptosParaAtravesarZona(Zona zona) {
+        return unidades.stream()
+                .allMatch(unidad -> unidad.puedeAtravesarZona(zona));
     }
+
+    public boolean puedeAtravesarZona(Zona zona) {
+        if (sonAptosParaAtravesarZona(zona)) {
+            return zona.grupoPuedeAtravesar(this);
+        } else return false;
+    }
+
 
     // Saber si un grupo se siente como en casa en una región,
     //  que es cuando al menos un porcentaje dado de las zonas de la región pueden ser atravesadas por el mismo.
@@ -69,11 +78,10 @@ public class Grupo {
         }
     }
 
-    private Integer compararNivel(Integer nivelUnidad1, Integer nivelUnidad2){
-        if(nivelUnidad1 == null) {
+    private Integer compararNivel(Integer nivelUnidad1, Integer nivelUnidad2) {
+        if (nivelUnidad1 == null) {
             return nivelUnidad2;
-        }
-        else if (nivelUnidad2 == null){
+        } else if (nivelUnidad2 == null) {
             return nivelUnidad1;
         }
         // todo: Filtrar si ambos son nulos

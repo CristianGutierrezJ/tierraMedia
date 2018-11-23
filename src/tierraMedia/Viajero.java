@@ -51,6 +51,11 @@ public class Viajero extends Unidad{
         return getRaza().equals(raza) && getNivel() >= (nivel);
     }
 
+    @Override
+    public boolean contieneElemento(String nombreElemento) {
+        return items.containsKey(nombreElemento);
+    }
+
 
     public void aumentarNivel() {
         this.nivel++;

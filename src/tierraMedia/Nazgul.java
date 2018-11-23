@@ -18,23 +18,15 @@ public class Nazgul extends Unidad {
     }
 
     @Override
+    public boolean contieneElemento(String nombreElemento) {
+        return false;
+    }
+
+    @Override
     public void aumentarNivel() {
     }
 
-    @Override
-    public Integer getNivel() {
-        return null;
-    }
 
-    @Override
-    public String getRaza() {
-        return null;
-    }
-
-    @Override
-    public Map<String, Item> getItems() {
-        return items;
-    }
 
 
 }

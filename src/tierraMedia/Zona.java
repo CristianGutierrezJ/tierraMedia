@@ -1,7 +1,6 @@
 package tierraMedia;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Zona {
 
@@ -74,19 +73,9 @@ public class Zona {
     }
 
 
-
     public boolean grupoPuedeAtravesar(Grupo grupo) {
-        if (this.grupoPuedeAtravesarZona(grupo)) {
-            return requerimientos.stream().allMatch(requerimiento -> requerimiento.grupoCumpleConLasNormas(grupo));
-        }
-        else return false;
+        return requerimientos.stream().allMatch(requerimiento -> requerimiento.grupoCumpleConLasNormas(grupo));
     }
-
-    public boolean grupoPuedeAtravesarZona(Grupo grupo){
-        return grupo.getUnidades().stream()
-                .allMatch(unidad -> unidad.puedeAtravesarZona(this));
-    }
-
 
 
     public boolean esPantanoso() {

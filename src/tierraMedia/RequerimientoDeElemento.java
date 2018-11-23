@@ -15,7 +15,7 @@ public class RequerimientoDeElemento extends Requerimiento {
     @Override
     public boolean grupoCumpleConLasNormas(Grupo grupo) {
         return grupo.getUnidades().stream()
-                .filter(unidad -> unidad.getItems().containsKey(nombreElemento))
+                .filter(unidad -> unidad.contieneElemento(nombreElemento))
                 .collect(Collectors.toList())
                 .size() >= this.getCantidad();
     }
