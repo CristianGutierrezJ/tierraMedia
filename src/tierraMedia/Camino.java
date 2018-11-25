@@ -37,6 +37,11 @@ public class Camino {
         return regionesAtravesadas().size();
     }
 
+    public Integer cantidadZonasAtravesadas() {
+        return zonasQueAtraviesa.size();
+    }
+
+
     // Saber si, en la Tierra Media, se cumple que todos los caminos conducen a Mordor.
     // Un camino conduce a Mordor si el nombre de la región de la última zona del mismo es, justamente, ‘Mordor’.
     public boolean conduceAMordor() {

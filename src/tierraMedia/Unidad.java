@@ -3,7 +3,7 @@ package tierraMedia;
 
 public abstract class Unidad {
 
-    public abstract void aumentarNivel();
+    public abstract void aumentarNivel(Camino camino);
 
 
     public abstract boolean puedeAtravesarZona(Zona zona);

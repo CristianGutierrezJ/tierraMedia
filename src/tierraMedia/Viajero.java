@@ -62,8 +62,8 @@ public class Viajero extends Unidad{
     }
 
 
-    public void aumentarNivel() {
-        this.nivel++;
+    public void aumentarNivel(Camino camino) {
+        this.nivel += camino.cantidadZonasAtravesadas();
     }
 
 

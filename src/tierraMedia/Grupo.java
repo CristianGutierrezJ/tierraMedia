@@ -80,7 +80,8 @@ public class Grupo {
 
         if(!unidadesViajeros.isEmpty()) { // Si no hay viajeros en las unidades NO hacer nada
             if (porcentajeDeZonasAtravesadas(camino.getZonasQueAtraviesa()) == 100.0) {
-                unidades.forEach(unidad -> unidad.aumentarNivel());
+                unidades.forEach(unidad -> unidad.aumentarNivel(camino));
+
             } else {
                 viajeroMenorNivel = viajeros.stream().min(Comparator.comparingInt(Viajero::getNivel)).get();
             }

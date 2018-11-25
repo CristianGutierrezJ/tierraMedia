@@ -28,7 +28,7 @@ public class Nazgul extends Unidad {
     }
 
     @Override
-    public void aumentarNivel() {
+    public void aumentarNivel(Camino camino) {
     }
 
 
