@@ -56,9 +56,16 @@ public class Viajero extends Unidad{
         return items.containsKey(nombreElemento);
     }
 
+    @Override
+    public boolean sosViajero() {
+        return true;
+    }
+
 
     public void aumentarNivel() {
         this.nivel++;
     }
+
+
 
 }

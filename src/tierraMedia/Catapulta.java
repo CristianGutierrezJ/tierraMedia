@@ -22,6 +22,11 @@ public class Catapulta extends Unidad {
         return false;
     }
 
+    @Override
+    public boolean sosViajero() {
+        return false;
+    }
+
 
     @Override
     public void aumentarNivel() {

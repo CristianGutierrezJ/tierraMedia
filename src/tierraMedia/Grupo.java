@@ -3,6 +3,7 @@ package tierraMedia;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Grupo {
@@ -56,7 +57,6 @@ public class Grupo {
         return porcentajeDouble;
     }
 
-    //todo Asi puedo filtrar las Collection<Zona> de distintas clases (Camino, Region) ! ¡
     private Collection<Zona> zonasQuePuedenAtravesar(Collection<Zona> zonas) {
         return zonas.stream().filter(zona -> puedeAtravesarZona(zona)).collect(Collectors.toList());
     }
@@ -68,15 +68,34 @@ public class Grupo {
         // Si el grupo no logra atravesarlas en su totalidad,
         // entonces no se aumenta el nivel de los integrantes, y además muere el integrante de menor nivel (se elimina del grupo).
 
-        if (porcentajeDeZonasAtravesadas(camino.getZonasQueAtraviesa()) == 100.0) {
-            unidades.forEach(unidad -> unidad.aumentarNivel());
-        } else {
-            Comparator<Unidad> comparator = (unidad1, unidad2) -> compararNivel(unidad1.getNivel(), unidad2.getNivel());
-            //Comparator<Unidad> comparator = (unidad1, unidad2) -> Integer.compare(unidad1.getNivel(), unidad2.getNivel());
-            // Comparator.comparingInt(Viajero::getNivel)
-            unidades.remove(unidades.stream().min(comparator).get());
+        // Creo una lista <VIAJERO>
+        List<Viajero> viajeros = new ArrayList<>();
+        // Filtro la lista de unidades a los que solo son viajeros, ¡¡OJO!! esa lista es <UNIDAD>
+        List<Unidad> unidadesViajeros = unidades.stream().filter(unidad -> (unidad.sosViajero())).collect(Collectors.toList());
+        // Casteo la lista anterior (tipo <UNIDAD> a <VIAJERO>), y guardo sus elementos a la lista<VIAJERO> antes creada
+        unidadesViajeros.forEach(unidad -> viajeros.add((Viajero)unidad));
+
+        // Creo un viajero para guardar informacion y luego eliminarlo
+        Viajero viajeroMenorNivel = new Viajero("a","a" , 99);
+
+        if(!unidadesViajeros.isEmpty()) { // Si no hay viajeros en las unidades NO hacer nada
+            if (porcentajeDeZonasAtravesadas(camino.getZonasQueAtraviesa()) == 100.0) {
+                unidades.forEach(unidad -> unidad.aumentarNivel());
+            } else {
+                Comparator<Viajero> comparator = (viajero1, viajero2) -> compararNivel(viajero1.getNivel(), viajero2.getNivel());
+                //Comparator<Unidad> comparator = (unidad1, unidad2) -> Integer.compare(unidad1.getNivel(), unidad2.getNivel());
+                // Comparator.comparingInt(Viajero::getNivel)
+
+                viajeroMenorNivel = viajeros.stream().min(comparator).get();
+            }
+            unidades.remove(viajeroMenorNivel);
         }
+
     }
+
+
+
+
 
     private Integer compararNivel(Integer nivelUnidad1, Integer nivelUnidad2) {
         if (nivelUnidad1 == null) {

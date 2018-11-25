@@ -11,4 +11,6 @@ public abstract class Unidad {
     public abstract boolean cumpleConRazaYNivel(String raza, Integer nivel);
 
     public abstract boolean contieneElemento(String nombreElemento);
+
+    public abstract boolean sosViajero();
 }

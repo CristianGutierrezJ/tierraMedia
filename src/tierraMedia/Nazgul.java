@@ -23,6 +23,11 @@ public class Nazgul extends Unidad {
     }
 
     @Override
+    public boolean sosViajero() {
+        return false;
+    }
+
+    @Override
     public void aumentarNivel() {
     }
 
