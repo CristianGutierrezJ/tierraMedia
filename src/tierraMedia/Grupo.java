@@ -82,31 +82,11 @@ public class Grupo {
             if (porcentajeDeZonasAtravesadas(camino.getZonasQueAtraviesa()) == 100.0) {
                 unidades.forEach(unidad -> unidad.aumentarNivel());
             } else {
-                Comparator<Viajero> comparator = (viajero1, viajero2) -> compararNivel(viajero1.getNivel(), viajero2.getNivel());
-                //Comparator<Unidad> comparator = (unidad1, unidad2) -> Integer.compare(unidad1.getNivel(), unidad2.getNivel());
-                // Comparator.comparingInt(Viajero::getNivel)
-
-                viajeroMenorNivel = viajeros.stream().min(comparator).get();
+                viajeroMenorNivel = viajeros.stream().min(Comparator.comparingInt(Viajero::getNivel)).get();
             }
             unidades.remove(viajeroMenorNivel);
         }
 
-    }
-
-
-
-
-
-    private Integer compararNivel(Integer nivelUnidad1, Integer nivelUnidad2) {
-        if (nivelUnidad1 == null) {
-            return nivelUnidad2;
-        } else if (nivelUnidad2 == null) {
-            return nivelUnidad1;
-        }
-        // todo: Filtrar si ambos son nulos
-        else {
-            return Integer.compare(nivelUnidad1, nivelUnidad2);
-        }
     }
 
 
