@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Grupo {
 
@@ -27,7 +28,7 @@ public class Grupo {
     // Saber si un grupo puede atravesar una zona.
     // Puede hacerlo cuando el grupo cumple todos sus requerimientos.
 
-    public boolean sonAptosParaAtravesarZona(Zona zona) {
+    protected boolean sonAptosParaAtravesarZona(Zona zona) {
         return unidades.stream()
                 .allMatch(unidad -> unidad.puedeAtravesarZona(zona));
     }
@@ -62,30 +63,27 @@ public class Grupo {
     }
 
     public void atravesarCamino(Camino camino) {
-        // Hacer que un grupo transite un camino.
-        // Cuando el grupo efectivamente atraviesa todas las zonas,
-        // aumenta el nivel de cada integrante en una unidad por cada zona atravesada.
-        // Si el grupo no logra atravesarlas en su totalidad,
-        // entonces no se aumenta el nivel de los integrantes, y además muere el integrante de menor nivel (se elimina del grupo).
 
-        // Creo una lista <VIAJERO>
-        List<Viajero> viajeros = new ArrayList<>();
         // Filtro la lista de unidades a los que solo son viajeros, ¡¡OJO!! esa lista es <UNIDAD>
         List<Unidad> unidadesViajeros = unidades.stream().filter(unidad -> (unidad.sosViajero())).collect(Collectors.toList());
-        // Casteo la lista anterior (tipo <UNIDAD> a <VIAJERO>), y guardo sus elementos a la lista<VIAJERO> antes creada
-        unidadesViajeros.forEach(unidad -> viajeros.add((Viajero)unidad));
 
-        // Creo un viajero para guardar informacion y luego eliminarlo
-        Viajero viajeroMenorNivel = new Viajero("a","a" , 99);
-
-        if(!unidadesViajeros.isEmpty()) { // Si no hay viajeros en las unidades NO hacer nada
-            if (porcentajeDeZonasAtravesadas(camino.getZonasQueAtraviesa()) == 100.0) {
+        // Si no hay viajeros en las unidades NO hacer nada
+        if (!unidadesViajeros.isEmpty()) {
+// Separo los viajeros de las unidades
+            // Creo una lista <VIAJERO>
+            List<Viajero> viajeros = new ArrayList<>();
+            // Casteo la lista anterior (tipo <UNIDAD> a <VIAJERO>), y guardo sus elementos a la lista<VIAJERO> antes creada
+            unidadesViajeros.forEach(unidad -> viajeros.add((Viajero) unidad));
+//
+            // Si el grupo atraviesa, aumento el nivel las unidades
+            if (camino.grupoPuedeAtravesar(this)) {
                 unidades.forEach(unidad -> unidad.aumentarNivel(camino));
 
+                // Si no atraviesa, el viajero de menor nivel se elimina
             } else {
-                viajeroMenorNivel = viajeros.stream().min(Comparator.comparingInt(Viajero::getNivel)).get();
+                unidades.remove(viajeros.stream().min(Comparator.comparingInt(Viajero::getNivel)).get());
             }
-            unidades.remove(viajeroMenorNivel);
+
         }
 
     }

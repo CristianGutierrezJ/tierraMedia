@@ -47,4 +47,16 @@ public class Camino {
     public boolean conduceAMordor() {
         return ultimaZona().getRegion().getNombre().equals("Mordor");
     }
+
+    public boolean grupoPuedeAtravesar(Grupo grupo) {
+        if (grupoEsAptoParaAtravesar(grupo)) {
+            return zonasQueAtraviesa.stream().allMatch(zona -> zona.grupoPuedeAtravesar(grupo));
+        }
+        return false;
+    }
+
+    private boolean grupoEsAptoParaAtravesar(Grupo grupo) {
+        return zonasQueAtraviesa.stream().allMatch(zona -> grupo.sonAptosParaAtravesarZona(zona));
+    }
+
 }
